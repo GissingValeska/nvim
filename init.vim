@@ -81,6 +81,7 @@ set cursorline
 set wrap
 set showcmd
 set wildmenu
+set nofoldenable
 
 "search
 set hlsearch
@@ -143,6 +144,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "
 Plug 'mg979/vim-visual-multi'
 Plug 'junegunn/goyo.vim' " distraction free writing mode
+" web-plug
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 "" The default plugin directory will be as follows:
 ""   - Vim (Linux/macOS): '~/.vim/plugged'
 ""   - Vim (Windows): '~/vimfiles/plugged'
@@ -214,17 +218,18 @@ let NERDTreeMapChangeRoot = "y"
 " ==
 " == NERDTree-git
 " ==
-"let g:NERDTreeIndicatorMapCustom = {
-"    \ "Modified"  : "✹",
-"    \ "Staged"    : "✚",
-"    \ "Untracked" : "✭",
-"    \ "Renamed"   : "➜",
-"    \ "Unmerged"  : "═",
-"    \ "Deleted"   : "✖",
-"    \ "Dirty"     : "✗",
-"    \ "Clean"     : "✔︎",
-"    \ "Unknown"   : "?"
-"    \ }
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 "
 "
 " ===
