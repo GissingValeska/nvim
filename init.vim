@@ -135,18 +135,22 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'vimwiki/vimwiki'
 
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "
-Plug 'mg979/vim-visual-multi'
-Plug 'junegunn/goyo.vim' " distraction free writing mode
+"Plug 'mg979/vim-visual-multi'
+"Plug 'junegunn/goyo.vim' " distraction free writing mode
 " web-plug
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 "" The default plugin directory will be as follows:
 ""   - Vim (Linux/macOS): '~/.vim/plugged'
 ""   - Vim (Windows): '~/vimfiles/plugged'
@@ -243,7 +247,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'google-chrome'
+let g:mkdp_browser = 'chromium'
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
@@ -286,6 +290,7 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-html',
   \ 'coc-vimlsp',
+  \ 'coc-eslint',
   \ 'coc-tsserver']
 "let g:coc_global_extensions = [
 "	\ 'coc-css',
@@ -486,3 +491,10 @@ endif
 "nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 "" Resume latest coc list.
 "nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+"
+"prettier
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#config#trailing_comma = 'es5'
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*md PrettierAsync
